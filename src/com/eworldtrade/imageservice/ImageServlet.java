@@ -35,7 +35,8 @@ public class ImageServlet extends HttpServlet {
 	 */
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
-		imagePath = "/Users/macbookair/Documents/uploadFiles/";
+		//imagePath = "/Users/macbookair/Documents/uploadFiles/";
+		imagePath = "/usr/local/ewt/uploadFiles/";
 	}
 
 	/**
