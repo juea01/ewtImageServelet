@@ -2,8 +2,10 @@ package com.eworldtrade.imageservice;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLDecoder;
 import java.nio.file.Files;
+import java.util.Properties;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -12,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 
 /**
  * Servlet implementation class ImageServlet
@@ -35,10 +38,16 @@ public class ImageServlet extends HttpServlet {
 	 */
 	public void init() throws ServletException {
 		// TODO Auto-generated method stub
-		//imagePath = "/Users/macbookair/Documents/uploadFiles/";
-		imagePath = "/usr/local/ewt/uploadFiles/";
+		try {
+			  InputStream settingsStream = ImageServlet.class.getClassLoader().getResourceAsStream("setting.properties");
+			  Properties pro = new Properties();
+			  pro.load(settingsStream);
+			  imagePath= pro.getProperty("uploadImageFileLocation");
+			} catch (Exception exc){
+				exc.printStackTrace();
+			}
 	}
-
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
